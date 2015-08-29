@@ -4,29 +4,20 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.featurerequest.showstopper.findmovie"
+    tools:context="com.featurerequest.showstopper.showContent"
     android:orientation="vertical">
 
-    <Button
+    <TextView android:text=""
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Press Me"
-        android:onClick="generateContent"
-        android:id="@+id/nextContent"/>
+        android:textAllCaps="true"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/showContent_title"/>
 
-    <Button
-        android:layout_width="wrap_content"
+    <TextView
+        android:text=""
         android:layout_height="wrap_content"
-        android:text="Select Me"
-        android:onClick="selectContent"
-        android:id="@+id/selectContent"/>
-
-    <FrameLayout
-        android:id="@+id/frag_content"
-        android:layout_height="fill_parent"
-        android:layout_width="fill_parent"
-        />
-
-
+        android:layout_width="wrap_content"
+        android:id="@+id/showContent_desc"/>
 
 </LinearLayout>
