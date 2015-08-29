@@ -1,6 +1,7 @@
 package com.featurerequest.showstopper;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.graphics.PointF;
@@ -11,7 +12,7 @@ import android.widget.Toast;
 /**
  * Created by kannon on 8/29/2015.
  */
-public abstract class SwipeListener extends GestureDetector.SimpleOnGestureListener implements View.OnTouchListener
+public abstract class SwipeListener implements GestureDetector.OnGestureListener
 {
     Context context;
     private static final int SWIPE_MIN_DISTANCE = 120;
@@ -63,9 +64,36 @@ public abstract class SwipeListener extends GestureDetector.SimpleOnGestureListe
     }
 
     @Override
-    public boolean onTouch( View v, MotionEvent e )
+    public boolean onDown( MotionEvent e )
     {
-        return detector.onTouchEvent(e);
+        Log.i("onDown", "got here");
+        return true;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent e)
+    {
+        Log.i("onShowPress", "got here");
+    }
+
+    @Override
+    public void onLongPress( MotionEvent e )
+    {
+        Log.i("onLongPress", "got here");
+    }
+
+    @Override
+    public boolean onSingleTapUp( MotionEvent e )
+    {
+        Log.i("onSingleTapUp", "got here");
+        return true;
+    }
+
+    @Override
+    public boolean onScroll( MotionEvent e1, MotionEvent e2, float distanceX, float distanceY )
+    {
+        Log.i("onScroll", "got here");
+        return true;
     }
 
     public abstract boolean onSwipeLeft();

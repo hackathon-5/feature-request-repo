@@ -13,18 +13,20 @@ import android.view.View;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.widget.Toast;
 
-public class findmovie extends Activity implements GestureDetector.OnGestureListener {
-
+public class findmovie extends Activity
+{
     private int titleCount = 1;
     private MovieInfo frag_movie_info;
-    private SwipeListener swipeListener;
+//    private SwipeListener swipeListener;
     private GestureDetector mDetector;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_findmovie);
-        mDetector = new GestureDetector(this,this);
+        MySwipeListener sl = new MySwipeListener();
+        mDetector = new GestureDetector(this,sl);
     }
 
     @Override
@@ -49,50 +51,42 @@ public class findmovie extends Activity implements GestureDetector.OnGestureList
         return super.onOptionsItemSelected(item);
     }
 
+    private class MySwipeListener extends SwipeListener
+    {
+        @Override
+        public boolean onSwipeUp()
+        {
+            Log.i( "onSwipeUp", "got here" );
+            return true;
+        }
+
+        @Override
+        public boolean onSwipeDown()
+        {
+            Log.i( "onSwipeDown", "got here" );
+            return true;
+        }
+
+        @Override
+        public boolean onSwipeLeft()
+        {
+            Log.i( "onSwipeLeft", "got here" );
+            return true;
+        }
+
+        @Override
+        public boolean onSwipeRight()
+        {
+            Log.i( "onSwipeRight", "got here" );
+            return true;
+        }
+    }
+
     @Override
     public boolean onTouchEvent( MotionEvent e )
     {
         this.mDetector.onTouchEvent(e);
         return super.onTouchEvent(e);
-    }
-
-    @Override
-    public boolean onDown( MotionEvent e )
-    {
-        Log.i("onDown", "got here");
-        return true;
-    }
-
-    @Override
-    public void onShowPress(MotionEvent e)
-    {
-        Log.i("onShowPress", "got here");
-    }
-
-    @Override
-    public void onLongPress( MotionEvent e )
-    {
-        Log.i("onLongPress", "got here");
-    }
-
-    @Override
-    public boolean onSingleTapUp( MotionEvent e )
-    {
-        Log.i("onSingleTapUp", "got here");
-        return true;
-    }
-
-    @Override
-    public boolean onScroll( MotionEvent e1, MotionEvent e2, float distanceX, float distanceY )
-    {
-        Log.i("onScroll", "got here");
-        return true;
-    }
-
-    public boolean onFling( MotionEvent e1, MotionEvent e2, float velocityX, float velocityY )
-    {
-        Log.i("onFling", "got here");
-        return true;
     }
 
     public void generateContent(View view){
