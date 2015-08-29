@@ -1,0 +1,8 @@
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+./.idea/compiler.xml ./.idea/copyright ./.idea/gradle.xml ./.idea/misc.xml ./.idea/modules.xml ./.idea/runConfigurations.xml ./.idea/vcs.xml ./.idea/workspace.xml
