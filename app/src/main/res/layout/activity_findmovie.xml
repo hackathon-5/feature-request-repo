@@ -7,20 +7,6 @@
     tools:context="com.featurerequest.showstopper.findmovie"
     android:orientation="vertical">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Press Me"
-        android:onClick="generateContent"
-        android:id="@+id/nextContent"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select Me"
-        android:onClick="selectContent"
-        android:id="@+id/selectContent"/>
-
     <FrameLayout
         android:id="@+id/frag_content"
         android:layout_height="fill_parent"

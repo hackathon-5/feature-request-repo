@@ -4,9 +4,6 @@ import android.content.Context;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
-import android.graphics.PointF;
-import android.view.View;
-import android.widget.Toast;
 
 
 /**
@@ -26,7 +23,7 @@ public abstract class SwipeListener implements GestureDetector.OnGestureListener
     @Override
     public boolean onFling( MotionEvent e1, MotionEvent e2, float velocityX, float velocityY )
     {
-        Toast.makeText(this.context, "Got to onFling event", Toast.LENGTH_LONG ).show();
+        //Toast.makeText(this.context, "Got to onFling event", Toast.LENGTH_LONG ).show();
 
         //fast enough
         Point start = new Point( e1.getX(), e1.getY() );

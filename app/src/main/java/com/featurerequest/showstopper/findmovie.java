@@ -10,9 +10,6 @@ import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
-import android.view.View;
-import android.view.GestureDetector.SimpleOnGestureListener;
-import android.widget.Toast;
 
 public class findmovie extends Activity
 {
@@ -77,6 +74,7 @@ public class findmovie extends Activity
         public boolean onSwipeLeft()
         {
             Log.i( "onSwipeLeft", "got here" );
+            generateNewMovie();
             return true;
         }
 
@@ -84,6 +82,7 @@ public class findmovie extends Activity
         public boolean onSwipeRight()
         {
             Log.i( "onSwipeRight", "got here" );
+            selectNewMovie();
             return true;
         }
     }
@@ -95,7 +94,8 @@ public class findmovie extends Activity
         return super.onTouchEvent(e);
     }
 
-    public void generateContent(View view){
+
+    private void generateNewMovie(){
         frag_movie_info = new MovieInfo();
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         frag_movie_info.setTitle("SampleTitle" + titleCount);
@@ -112,15 +112,17 @@ public class findmovie extends Activity
         titleCount++;
     }
 
-    public void selectContent(View view) {
-        Intent intent = new Intent(this, showContent.class);
-        intent.putExtra("Title", frag_movie_info.getTitle());
-        intent.putExtra("Genre", frag_movie_info.getGenre());
-        intent.putExtra("Year", frag_movie_info.getYear());
-        intent.putExtra("Length", frag_movie_info.getLength());
-        intent.putExtra("Synopsis", frag_movie_info.getSynopsis());
-        intent.putExtra("URL", frag_movie_info.getURL());
-        intent.putExtra("Type", frag_movie_info.getType());
-        startActivity(intent);
+    private void selectNewMovie(){
+        if(frag_movie_info !=null) {
+            Intent intent = new Intent(this, showContent.class);
+            intent.putExtra("Title", frag_movie_info.getTitle());
+            intent.putExtra("Genre", frag_movie_info.getGenre());
+            intent.putExtra("Year", frag_movie_info.getYear());
+            intent.putExtra("Length", frag_movie_info.getLength());
+            intent.putExtra("Synopsis", frag_movie_info.getSynopsis());
+            intent.putExtra("URL", frag_movie_info.getURL());
+            intent.putExtra("Type", frag_movie_info.getType());
+            startActivity(intent);
+        }
     }
 }
