@@ -1,16 +1,24 @@
 package com.featurerequest.showstopper;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class findmovie extends Activity {
+public class findmovie extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_findmovie);
+
+        ViewPager pager = (ViewPager) findViewById(R.id.viewPager);
+        pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
+
     }
 
     @Override
@@ -33,5 +41,36 @@ public class findmovie extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private class MyPagerAdapter extends FragmentPagerAdapter {
+
+        public MyPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int pos) {
+            switch (pos) {
+
+                case 0:
+                    return content.newInstance();
+                case 1:
+                    return content.newInstance();
+                case 2:
+                    return content.newInstance();
+                case 3:
+                    return content.newInstance();
+                case 4:
+                    return content.newInstance();
+                default:
+                    return content.newInstance();
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return 5;
+        }
     }
 }

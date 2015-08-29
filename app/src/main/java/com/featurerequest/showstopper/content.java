@@ -2,13 +2,13 @@ package com.featurerequest.showstopper;
 
 
 import android.os.Bundle;
-import android.app.Fragment;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.support.v4.app.Fragment;
 
 
 /**
@@ -40,6 +40,11 @@ public class content extends Fragment {
         content_desc.setMovementMethod(new ScrollingMovementMethod());
         content_image = (ImageView) view.findViewById(R.id.content_image);
         content_image.setImageResource(R.drawable.placeholder);
+    }
+
+    public static content newInstance() {
+        content content_frag = new content();
+        return content_frag;
     }
 
 }
