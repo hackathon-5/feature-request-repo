@@ -81,7 +81,7 @@ public abstract class SwipeListener implements GestureDetector.OnGestureListener
     @Override
     public boolean onScroll( MotionEvent e1, MotionEvent e2, float distanceX, float distanceY )
     {
-        Log.i("onScroll", "got here");
+//        Log.i("onScroll", "got here");
         return true;
     }
 
