@@ -4,49 +4,27 @@ import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.widget.Toast;
 
-public class findmovie extends Activity{
+public class findmovie extends Activity implements GestureDetector.OnGestureListener {
 
     private int titleCount = 1;
     private MovieInfo frag_movie_info;
     private SwipeListener swipeListener;
+    private GestureDetector mDetector;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_findmovie);
-        swipeListener = new SwipeListener(this.getApplicationContext()) {
-            @Override
-            public boolean onSwipeLeft() {
-                Toast.makeText( this.context, "Left", Toast.LENGTH_LONG ).show();
-                return true;
-            }
-
-            @Override
-            public boolean onSwipeRight() {
-                Toast.makeText( this.context, "Right", Toast.LENGTH_LONG ).show();
-                return true;
-            }
-
-            @Override
-            public boolean onSwipeUp() {
-                Toast.makeText( this.context, "Up", Toast.LENGTH_LONG ).show();
-                return true;
-            }
-
-            @Override
-            public boolean onSwipeDown() {
-                Toast.makeText( this.context, "Down", Toast.LENGTH_LONG ).show();
-                return true;
-            }
-        };
-        this.findViewById(android.R.id.content).setOnTouchListener(swipeListener);
+        mDetector = new GestureDetector(this,this);
     }
 
     @Override
@@ -69,6 +47,52 @@ public class findmovie extends Activity{
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onTouchEvent( MotionEvent e )
+    {
+        this.mDetector.onTouchEvent(e);
+        return super.onTouchEvent(e);
+    }
+
+    @Override
+    public boolean onDown( MotionEvent e )
+    {
+        Log.i("onDown", "got here");
+        return true;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent e)
+    {
+        Log.i("onShowPress", "got here");
+    }
+
+    @Override
+    public void onLongPress( MotionEvent e )
+    {
+        Log.i("onLongPress", "got here");
+    }
+
+    @Override
+    public boolean onSingleTapUp( MotionEvent e )
+    {
+        Log.i("onSingleTapUp", "got here");
+        return true;
+    }
+
+    @Override
+    public boolean onScroll( MotionEvent e1, MotionEvent e2, float distanceX, float distanceY )
+    {
+        Log.i("onScroll", "got here");
+        return true;
+    }
+
+    public boolean onFling( MotionEvent e1, MotionEvent e2, float velocityX, float velocityY )
+    {
+        Log.i("onFling", "got here");
+        return true;
     }
 
     public void generateContent(View view){
