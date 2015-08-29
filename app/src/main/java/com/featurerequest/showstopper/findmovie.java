@@ -107,7 +107,8 @@ public class findmovie extends Activity
         frag_movie_info.setType("SampleType");
         ft.replace(R.id.frag_content, frag_movie_info);
         ft.addToBackStack(null);
-        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+//        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        this.overridePendingTransition( R.anim.enter_right, R.anim.exit_left );
         ft.commit();
         titleCount++;
     }
