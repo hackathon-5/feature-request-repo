@@ -11,13 +11,13 @@ import android.view.View;
 public class findmovie extends Activity {
 
     private int titleCount = 1;
-    private Content frag_content;
+    private content frag_content;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_findmovie);
-
+        getWindow().getDecorView().findViewById(android.R.id.content).setOnTouchListener( new swipeHandle() );
     }
 
     @Override
@@ -43,7 +43,7 @@ public class findmovie extends Activity {
     }
 
     public void generateContent(View view){
-        frag_content = new Content();
+        frag_content = new content();
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         frag_content.setTitle("SampleTitle" + titleCount);
         frag_content.setGenre("SampleGenre");
@@ -69,5 +69,39 @@ public class findmovie extends Activity {
         intent.putExtra("URL", frag_content.getURL());
         intent.putExtra("Type", frag_content.getType());
         startActivity(intent);
+    }
+
+    private class swipeHandle extends SwipeListener implements View.OnTouchListener{
+
+        @Override
+        public boolean onSwipeLeft(){
+            frag_content = new content();
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            frag_content.setTitle("SampleTitle" + titleCount);
+            frag_content.setGenre("SampleGenre");
+            frag_content.setYear("SampleYear");
+            frag_content.setLength("SampleLength");
+            frag_content.setSynopsis("SampleSynopsis");
+            frag_content.setURL("SampleURL");
+            frag_content.setType("SampleType");
+            ft.replace(R.id.frag_content, frag_content);
+            ft.addToBackStack(null);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            ft.commit();
+            titleCount++;
+            return true;
+        }
+        @Override
+        public boolean onSwipeRight(){
+            return false;
+        }
+        @Override
+        public boolean onSwipeUp(){
+            return false;
+        }
+        @Override
+        public boolean onSwipeDown(){
+            return false;
+        }
     }
 }
