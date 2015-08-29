@@ -20,6 +20,10 @@
             android:name=".findmovie"
             android:label="@string/title_activity_findmovie" >
         </activity>
+        <activity
+            android:name=".showContent"
+            android:label="@string/title_activity_show_content" >
+        </activity>
     </application>
 
 </manifest>
