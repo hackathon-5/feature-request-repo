@@ -18,9 +18,11 @@ public class ShowDataSource
     //Database fields
     private SQLiteDatabase db;
     private ShowStopperDatabase dbHelper;
-    private String[] allColumns = {dbHelper.COLUMN_ID, dbHelper.COLUMN_TITLE, dbHelper.COLUMN_YEAR, dbHelper.COLUMN_GENRE, dbHelper.COLUMN_MOVIE,
+    private String[] allColumns = {
+            dbHelper.COLUMN_ID, dbHelper.COLUMN_TITLE, dbHelper.COLUMN_YEAR, dbHelper.COLUMN_GENRE, dbHelper.COLUMN_MOVIE,
             dbHelper.COLUMN_BANNED, dbHelper.COLUMN_RATING, dbHelper.COLUMN_SYNOPSIS, dbHelper.COLUMN_LENGTH, dbHelper.COLUMN_AMAZON,
-            dbHelper.COLUMN_NETFLIX, dbHelper.COLUMN_ITUNES, dbHelper.COLUMN_GOOGLE, dbHelper.COLUMN_IMDB_ID };
+            dbHelper.COLUMN_NETFLIX, dbHelper.COLUMN_ITUNES, dbHelper.COLUMN_GOOGLE, dbHelper.COLUMN_IMDB_ID
+    };
 
     public ShowDataSource(Context context)
     {
