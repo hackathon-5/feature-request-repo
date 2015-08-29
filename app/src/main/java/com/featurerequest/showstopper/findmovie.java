@@ -2,22 +2,32 @@ package com.featurerequest.showstopper;
 
 import android.app.Activity;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.GestureDetector.SimpleOnGestureListener;
+import android.widget.Toast;
 
-public class findmovie extends Activity {
-
+public class findmovie extends Activity
+{
     private int titleCount = 1;
-    private content frag_content;
+    private MovieInfo frag_movie_info;
+    //    private SwipeListener swipeListener;
+    private GestureDetector mDetector;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_findmovie);
-        getWindow().getDecorView().findViewById(android.R.id.content).setOnTouchListener( new swipeHandle() );
+        MySwipeListener sl = new MySwipeListener( this.getBaseContext() );
+        mDetector = new GestureDetector(this,sl);
     }
 
     @Override
@@ -42,17 +52,60 @@ public class findmovie extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    private class MySwipeListener extends SwipeListener
+    {
+        public MySwipeListener( Context c )
+        {
+            super(c);
+        }
+
+        @Override
+        public boolean onSwipeUp()
+        {
+            Log.i( "onSwipeUp", "got here" );
+            return true;
+        }
+
+        @Override
+        public boolean onSwipeDown()
+        {
+            Log.i( "onSwipeDown", "got here" );
+            return true;
+        }
+
+        @Override
+        public boolean onSwipeLeft()
+        {
+            Log.i( "onSwipeLeft", "got here" );
+            return true;
+        }
+
+        @Override
+        public boolean onSwipeRight()
+        {
+            Log.i( "onSwipeRight", "got here" );
+            return true;
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent( MotionEvent e )
+    {
+        this.mDetector.onTouchEvent(e);
+        return super.onTouchEvent(e);
+    }
+
     public void generateContent(View view){
-        frag_content = new content();
+        frag_movie_info = new MovieInfo();
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        frag_content.setTitle("SampleTitle" + titleCount);
-        frag_content.setGenre("SampleGenre");
-        frag_content.setYear("SampleYear");
-        frag_content.setLength("SampleLength");
-        frag_content.setSynopsis("SampleSynopsis");
-        frag_content.setURL("SampleURL");
-        frag_content.setType("SampleType");
-        ft.replace(R.id.frag_content, frag_content);
+        frag_movie_info.setTitle("SampleTitle" + titleCount);
+        frag_movie_info.setGenre("SampleGenre");
+        frag_movie_info.setYear("SampleYear");
+        frag_movie_info.setLength("SampleLength");
+        frag_movie_info.setSynopsis("SampleSynopsis");
+        frag_movie_info.setURL("SampleURL");
+        frag_movie_info.setType("SampleType");
+        ft.replace(R.id.frag_content, frag_movie_info);
         ft.addToBackStack(null);
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         ft.commit();
@@ -61,47 +114,13 @@ public class findmovie extends Activity {
 
     public void selectContent(View view) {
         Intent intent = new Intent(this, showContent.class);
-        intent.putExtra("Title", frag_content.getTitle());
-        intent.putExtra("Genre", frag_content.getGenre());
-        intent.putExtra("Year", frag_content.getYear());
-        intent.putExtra("Length", frag_content.getLength());
-        intent.putExtra("Synopsis", frag_content.getSynopsis());
-        intent.putExtra("URL", frag_content.getURL());
-        intent.putExtra("Type", frag_content.getType());
+        intent.putExtra("Title", frag_movie_info.getTitle());
+        intent.putExtra("Genre", frag_movie_info.getGenre());
+        intent.putExtra("Year", frag_movie_info.getYear());
+        intent.putExtra("Length", frag_movie_info.getLength());
+        intent.putExtra("Synopsis", frag_movie_info.getSynopsis());
+        intent.putExtra("URL", frag_movie_info.getURL());
+        intent.putExtra("Type", frag_movie_info.getType());
         startActivity(intent);
-    }
-
-    private class swipeHandle extends SwipeListener implements View.OnTouchListener{
-
-        @Override
-        public boolean onSwipeLeft(){
-            frag_content = new content();
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            frag_content.setTitle("SampleTitle" + titleCount);
-            frag_content.setGenre("SampleGenre");
-            frag_content.setYear("SampleYear");
-            frag_content.setLength("SampleLength");
-            frag_content.setSynopsis("SampleSynopsis");
-            frag_content.setURL("SampleURL");
-            frag_content.setType("SampleType");
-            ft.replace(R.id.frag_content, frag_content);
-            ft.addToBackStack(null);
-            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-            ft.commit();
-            titleCount++;
-            return true;
-        }
-        @Override
-        public boolean onSwipeRight(){
-            return false;
-        }
-        @Override
-        public boolean onSwipeUp(){
-            return false;
-        }
-        @Override
-        public boolean onSwipeDown(){
-            return false;
-        }
     }
 }
