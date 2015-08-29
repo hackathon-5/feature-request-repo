@@ -17,23 +17,10 @@ public abstract class SwipeListener implements GestureDetector.OnGestureListener
     Context context;
     private static final int SWIPE_MIN_DISTANCE = 120;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
-    private static GestureDetector detector;
-
-    public SwipeListener()
-    {
-        super();
-    }
 
     public SwipeListener( Context c )
     {
         this.context = c;
-        detector = new GestureDetector( c, this );
-    }
-
-    public SwipeListener( Context c, GestureDetector gd )
-    {
-        this.context = c;
-        this.detector = gd;
     }
 
     @Override
@@ -44,6 +31,8 @@ public abstract class SwipeListener implements GestureDetector.OnGestureListener
         //fast enough
         Point start = new Point( e1.getX(), e1.getY() );
         Point end = new Point( e2.getX(), e2.getY() );
+        Log.d( "Event1:", e1.getX() + ":" + e1.getY() );
+        Log.d( "Event2:", e2.getX() + ":" + e2.getY() );
 
         //find swipe type
         SwipeFinder.SWIPE_TYPE s = SwipeFinder.getSwipeType( start, end, SWIPE_MIN_DISTANCE );
