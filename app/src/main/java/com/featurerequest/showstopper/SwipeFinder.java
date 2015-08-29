@@ -12,12 +12,20 @@ public class SwipeFinder
         if( start.distance(end) < minDistance )
             return SWIPE_TYPE.NONE;
 
-        double xMovement = end.x - start.x;
-        double yMovement = end.y - start.y;
+        double xDis = Math.abs( end.x - start.x );
+        double yDis = Math.abs( end.y - start.y );
 
-        if( xMovement >= yMovement )
-            return xMovement > 0 ? SWIPE_TYPE.RIGHT : SWIPE_TYPE.LEFT;
+        //more horixontal movement
+        if( xDis >= yDis )
+        {
+            if( start.x > end.x )
+                return SWIPE_TYPE.LEFT;
+            return SWIPE_TYPE.RIGHT;
+        }
 
-        return yMovement > 0 ? SWIPE_TYPE.UP : SWIPE_TYPE.DOWN;
+        //more vertical
+        if( end.y > start.y )
+            return SWIPE_TYPE.DOWN;
+        return SWIPE_TYPE.UP;
     }
 }
