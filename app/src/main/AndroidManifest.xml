@@ -16,6 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".findmovie"
+            android:label="@string/title_activity_findmovie" >
+        </activity>
     </application>
 
 </manifest>
