@@ -2,6 +2,7 @@ package com.featurerequest.showstopper;
 
 import android.app.Activity;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,7 +26,7 @@ public class findmovie extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_findmovie);
-        MySwipeListener sl = new MySwipeListener();
+        MySwipeListener sl = new MySwipeListener( this.getBaseContext() );
         mDetector = new GestureDetector(this,sl);
     }
 
@@ -53,6 +54,11 @@ public class findmovie extends Activity
 
     private class MySwipeListener extends SwipeListener
     {
+        public MySwipeListener( Context c )
+        {
+            super(c);
+        }
+
         @Override
         public boolean onSwipeUp()
         {
