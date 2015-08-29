@@ -4,12 +4,13 @@ import android.content.Context;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.graphics.PointF;
+import android.view.View;
 
 
 /**
  * Created by kannon on 8/29/2015.
  */
-public abstract class SwipeListener extends GestureDetector.SimpleOnGestureListener
+public abstract class SwipeListener extends GestureDetector.SimpleOnGestureListener implements View.OnTouchListener
 {
     Context context;
     private static final int SWIPE_MIN_DISTANCE = 120;
@@ -48,6 +49,12 @@ public abstract class SwipeListener extends GestureDetector.SimpleOnGestureListe
             default:
                 return false;
         }
+    }
+
+    @Override
+    public boolean onTouch( View v, MotionEvent e )
+    {
+        return false;
     }
 
     public abstract boolean onSwipeLeft();
