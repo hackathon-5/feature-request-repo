@@ -16,6 +16,7 @@ public abstract class SwipeListener extends GestureDetector.SimpleOnGestureListe
     Context context;
     private static final int SWIPE_MIN_DISTANCE = 120;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
+    private static GestureDetector detector;
 
     public SwipeListener()
     {
@@ -25,6 +26,13 @@ public abstract class SwipeListener extends GestureDetector.SimpleOnGestureListe
     public SwipeListener( Context c )
     {
         this.context = c;
+        detector = new GestureDetector( c, this );
+    }
+
+    public SwipeListener( Context c, GestureDetector gd )
+    {
+        this.context = c;
+        this.detector = gd;
     }
 
     @Override
@@ -57,8 +65,7 @@ public abstract class SwipeListener extends GestureDetector.SimpleOnGestureListe
     @Override
     public boolean onTouch( View v, MotionEvent e )
     {
-        Toast.makeText(this.context, "Got to onTouch event", Toast.LENGTH_LONG ).show();
-        return false;
+        return detector.onTouchEvent(e);
     }
 
     public abstract boolean onSwipeLeft();

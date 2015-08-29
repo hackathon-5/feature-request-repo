@@ -21,7 +21,7 @@ public class findmovie extends Activity{
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_findmovie);
-        swipeListener = new SwipeListener() {
+        swipeListener = new SwipeListener(this.getApplicationContext()) {
             @Override
             public boolean onSwipeLeft() {
                 Toast.makeText( this.context, "Left", Toast.LENGTH_LONG ).show();
